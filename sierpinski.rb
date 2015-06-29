@@ -3,18 +3,18 @@ require 'gosu'
 class Sierpinski < Gosu::Window
 
 	def initialize
-		super 500, 500
+		super 1000, 1000
 		self.caption = "Sierpinski Triangle Ruby Script"
 		@white = Gosu::Color::WHITE
-		@y = 400 - (200 * Math.sqrt(3))
+		@y = 800 - (400 * Math.sqrt(3))
 		@tris = []
-		createTriangle(50, 400, 1)
+		createTriangle(100, 800, 1)
 	end
 
 	def createTriangle x, y, depth
 		tri = Triangle.new(x, y, depth)
 		@tris << tri
-		unless depth >= 6
+		unless depth >= 7
 			createTriangle(x, y, depth+1)
 			createTriangle(tri.x2, tri.y2, depth+1)
 			createTriangle(tri.xco+tri.len, tri.yco, depth+1)
@@ -22,9 +22,9 @@ class Sierpinski < Gosu::Window
 	end
 
 	def draw
-		draw_line(50, 400, @white, 450, 400, @white, 0)
-		draw_line(50, 400, @white, 250, @y, @white, 0)
-		draw_line(250, @y, @white, 450, 400, @white, 0)
+		draw_line(100, 800, @white, 900, 800, @white, 0)
+		draw_line(100, 800, @white, 500, @y, @white, 0)
+		draw_line(500, @y, @white, 900, 800, @white, 0)
 		@tris.each do |tri|
 			tri.lines.each do |line|
 				draw_line(line[:x], line[:y], @white, line[:x2], line[:y2], @white, 0)
@@ -37,7 +37,7 @@ end
 class Triangle
 	def initialize xco, yco, depth
 		@xco, @yco = xco, yco
-		@len = 400/(2**depth)
+		@len = 800/(2**depth)
 		@angle = (Math::PI/3)
 		@x2 = xco + @len * Math.cos(@angle)
 		@y2 = yco - @len * Math.sin(@angle)
