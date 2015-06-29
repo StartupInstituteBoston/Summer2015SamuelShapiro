@@ -2,10 +2,6 @@ require 'gosu'
 
 class Sierpinski < Gosu::Window
 
-#	def drawTriangle xco, yco, depth
-#		@lines << 
-#	end
-
 	def initialize
 		super 500, 500
 		self.caption = "Sierpinski Triangle Ruby Script"
@@ -49,7 +45,6 @@ class Triangle
 		@lines << {:x => @x2, :y => @y2, :x2 => @x2+@len, :y2 => @y2}
 		@lines << {:x => @x2, :y => @y2, :x2 => @xco+@len, :y2 => @yco}
 		@lines << {:x => @x2+@len, :y => @y2, :x2 => @xco+@len, :y2 => @yco}
-		@trinews = []
 	end
 
 	attr_reader :x2, :y2, :xco, :yco, :len, :lines
